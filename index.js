@@ -24,7 +24,7 @@ import * as scratch3 from "./scratch3/index.js"
 export default function (window) {
   const document = window.document
 
-//   scratch2.init(window)
+  //   scratch2.init(window)
   scratch3.init(window)
 
   function appendStyles() {
