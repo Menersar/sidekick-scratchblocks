@@ -1,16 +1,12 @@
 {
-  "name": "scratchblocks",
-  "version": "3.6.4",
+  "name": "sidekick-scratchblocks",
+  "version": "0.1.0",
   "description": "Make pictures of Scratch blocks from text.",
   "license": "MIT",
   "author": "Tim Radvan",
-  "homepage": "https://scratchblocks.github.io/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/scratchblocks/scratchblocks.git"
-  },
-  "bugs": {
-    "url": "https://github.com/scratchblocks/scratchblocks/issues"
+    "url": "git+https://github.com/Menersar/sidekick-scratchblocks.git"
   },
   "type": "module",
   "main": "build/scratchblocks.min.js",
