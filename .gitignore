@@ -6,3 +6,5 @@ node_modules
 npm-debug.log
 src/_cache
 tests/*.svg
+
+.history
