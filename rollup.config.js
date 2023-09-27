@@ -1,10 +1,20 @@
 import babel from "@rollup/plugin-babel"
 import json from "@rollup/plugin-json"
-import pkg from "./package.json" assert { "type": "json" }
+// import pkg from "./package.json" assert { "type": "json" }
+// import pkg from "./package.json"
+import { createRequire } from "node:module"
+const require = createRequire(import.meta.url)
+const pkg = require("./package.json")
 import serve from "rollup-plugin-serve"
 import license from "rollup-plugin-license"
 import terser from "@rollup/plugin-terser"
 import csso from "./locales-src/rollup-optimized-css-text.js"
+
+// const packageName = "sidekick-scratchblocks"
+// const packageDescription = "Make pictures of Scratch blocks from text."
+// const packageVersion = "0.1.0"
+// const packageLicense = "MIT"
+// const packageAuthor = "Tim Radvan"
 
 let { buildTarget } = process.env
 
@@ -20,14 +30,30 @@ const env = {
   prod: buildTarget === "PROD",
 }
 
+// const bannerText = `
+// <%= pkg.name %> v<%= pkg.version %>
+// <%= pkg.homepage %>
+// <%= pkg.description %>
+
+// Copyright 2013–<%= moment().format('YYYY') %>, <%= pkg.author %>
+// @license <%= pkg.license %>
+// `.trim()
+
 const bannerText = `
 <%= pkg.name %> v<%= pkg.version %>
-<%= pkg.homepage %>
 <%= pkg.description %>
 
 Copyright 2013–<%= moment().format('YYYY') %>, <%= pkg.author %>
 @license <%= pkg.license %>
 `.trim()
+
+// const bannerText = `
+// <%= packageName %> v<%= packageVersion %>
+// <%= packageDescription %>
+
+// Copyright 2013–<%= moment().format('YYYY') %>, <%= packageAuthor %>
+// @license <%= packageLicense %>
+// `.trim()
 
 const commonPreBabelOperations = isLocale => [
   isLocale ? undefined : csso({ minify: env.prod }),
@@ -57,6 +83,7 @@ export default [
     input: "browser.js",
     output: {
       file: pkg.main,
+      // file: "build/scratchblocks.min.js",
       format: "iife",
       name: "scratchblocks",
       sourcemap: env.prod,
@@ -76,6 +103,7 @@ export default [
     input: "browser.es.js",
     output: {
       file: pkg.module,
+      // file: "build/scratchblocks.min.es.js",
       format: "esm",
       sourcemap: env.prod,
     },
